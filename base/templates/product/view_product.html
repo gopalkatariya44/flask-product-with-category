@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block title %}Insert product{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+{#    <table border="=1px solid blue">#}
+{#    <tr>#}
+{#        <th> Product Name</th>#}
+{#        <th> Product Description</th>#}
+{#        <th> Product Price</th>#}
+{#        <th> Product Quantity</th>#}
+{#        <th> Category Name</th>#}
+{#        <th> Subategory Name</th>#}
+{#        <th> Product Image URL</th>#}
+{#        <th> Actioin</th>#}
+{#    </tr>#}
+{#    {% for i in data %}#}
+{#        <tr>#}
+{#            <td>{{ i[0]['product_name'] }}</td>#}
+{#            <td>{{ i[0]['product_description'] }}</td>#}
+{#            <td>{{ i[0]['product_price'] }}</td>#}
+{#            <td>{{ i[0]['product_quantity'] }}</td>#}
+{#            <td>{{ i[2]['category_name'] }}</td>#}
+{#            <td>{{ i[1]['subcategory_name'] }}</td>#}
+{#            <td>#}
+{#                <a href=" {{ i[0]['product_image_path'] }}{{ i[0]['product_image_name'] }}">#}
+{#                    Click Here</a></td>#}
+{##}
+{##}
+{#            <td>#}
+{#                <button#}
+{#                        type="button"><a#}
+{#                        href="/product/load_view?id={{ i[0]['product_id'] }}">Update </a>#}
+{#                </button>#}
+{##}
+{#                <button type="button"><a#}
+{#                        href="/product/delete/?id={{ i[0]['product_id'] }}">Delete </a>#}
+{#                </button>#}
+{##}
+{#            </td>#}
+{#        </tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+    <div style="padding: 50px">
+        <h1>Product List</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Description</th>
+                <th scope="col">Product Price</th>
+                <th scope="col">Product Quantity</th>
+                <th scope="col">Category Name</th>
+                <th scope="col">Subcategory Name</th>
+                <th scope="col">Product Image URL</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in data %}
+                <tr>
+
+
+
+{#                ------------#}
+{#                                <td>{{ i[0]['product_name'] }}</td>#}
+{#            <td>{{ i[0]['product_description'] }}</td>#}
+{#            <td>{{ i[0]['product_price'] }}</td>#}
+{#            <td>{{ i[0]['product_quantity'] }}</td>#}
+{#            <td>{{ i[2]['category_name'] }}</td>#}
+{#            <td>{{ i[1]['subcategory_name'] }}</td>#}
+{#            <td>#}
+{#                <a href=" {{ i[0]['product_image_path'] }}{{ i[0]['product_image_name'] }}">#}
+{#                    Click Here</a></td>#}
+{##}
+{##}
+{#            <td>#}
+{#                <button#}
+{#                        type="button"><a#}
+{#                        href="/product/load_view?id={{ i[0]['product_id'] }}">Update </a>#}
+{#                </button>#}
+{##}
+{#                <button type="button"><a#}
+{#                        href="/product/delete/?id={{ i[0]['product_id'] }}">Delete </a>#}
+{#                </button>#}
+{##}
+{#            </td>#}
+{#        </tr>#}
+{#                ------------#}
+
+                    <td>{{ row[0]['product_name'] }}</td>
+                    <td>{{ row[0]['product_description'] }}</td>
+                    <td>{{ row[0]['product_price'] }}</td>
+                    <td>{{ row[0]['product_quantity'] }}</td>
+                    <td>{{ row[2]['category_name'] }}</td>
+                    <td>{{ row[1]['subcategory_name'] }}</td>
+                    <td>
+                        <a href=" {{ row[0]['product_image_path'] }}{{ row[0]['product_image_name'] }}">Click Here</a>
+                    </td>
+
+                    <td>
+                        <a href="/admin/edit_subcategory/?id={{ row[0]['subcategory_id'] }}">
+                        <button type="button" class="btn btn-outline-success">Update</button>
+                        </a>
+                        <a href="/admin/product/delete_product?id={{ row[0]['product_id'] }}">
+                            <button type="button" class="btn btn-outline-danger">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if data|length == 0 %}
+                <h6 style="text-align: center">No Products please add some</h6>
+        {% endif %}
+    </div>
+{% endblock %}

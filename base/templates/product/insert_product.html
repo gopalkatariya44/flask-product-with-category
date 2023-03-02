@@ -31,7 +31,7 @@
         <h1>Add product</h1>
 
         <br>
-        <form action="/admin/insert_subcategory" method="POST">
+        <form enctype="multipart/form-data" action="/admin/product/insert_product" method="POST">
             <div class="mb-4 col-md-5">
                 <label for="exampleInputName" class="form-label">Category</label>
                 <div class="input-group mb-3">
@@ -54,15 +54,30 @@
 
             <div class="mb-4 col-md-5">
                 <label for="exampleInputName" class="form-label">Name</label>
-                <input name="subCategoryName" type="text" class="form-control" id="exampleInputName"
+                <input name="productName" type="text" class="form-control" id="exampleInputName"
                        aria-describedby="nameHelp" required>
             </div>
             <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Price</label>
+                <input name="productPrice" type="number" class="form-control" id="exampleInputName"
+                       aria-describedby="nameHelp" required>
+            </div>
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Quantity</label>
+                <input name="productQuantity" type="number" class="form-control" id="exampleInputName"
+                       aria-describedby="nameHelp" required>
+            </div>
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Pick Image</label>
+                  <input name="productImage" type="file" class="form-control" id="customFile" accept="image/jpeg,image/png" required/>
+            </div>
+            <div class="mb-4 col-md-5">
                 <label for="exampleInputName" class="form-label">Description</label>
-                <textarea name="subCategoryDescription" class="form-control" placeholder="Leave a description here"
+                <textarea name="productDescription" class="form-control" placeholder="Leave a description here"
                           id="floatingTextarea2"
                           style="height: 100px"></textarea>
             </div>
+
             <div class="d-grid gap-2 col-md-5">
                 <button class="btn btn-primary" type="submit">Submit</button>
             </div>
