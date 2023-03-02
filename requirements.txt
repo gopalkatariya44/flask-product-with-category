@@ -1,0 +1,9 @@
+dnspython==1.16.0
+email-validator==1.1.1
+Flask @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9ctftfb254/croot/flask_1671217361609/work
+Flask-Migrate==4.0.4
+Flask-SQLAlchemy==3.0.3
+pdfkit==0.6.1
+Pillow==7.2.0
+PyMySQL==1.0.2
+SQLAlchemy==2.0.4
