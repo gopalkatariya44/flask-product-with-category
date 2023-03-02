@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Insert category{% endblock %}
+{% block content %}
+    <div style="padding: 50px">
+        <h1>Add Category</h1>
+        <br>
+        <form action="/admin/insert_category" method="POST">
+
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Name</label>
+                <input name="categoryName" type="text" class="form-control" id="exampleInputName"
+                       aria-describedby="nameHelp" required>
+            </div>
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Description</label>
+                <textarea name="categoryDescription" class="form-control" placeholder="Leave a description here"
+                          id="floatingTextarea2"
+                          style="height: 100px"></textarea>
+            </div>
+            <div class="d-grid gap-2 col-md-5">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

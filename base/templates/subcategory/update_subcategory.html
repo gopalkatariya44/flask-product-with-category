@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Update Subcategory{% endblock %}
+{% block content %}
+    <div style="padding: 50px">
+        <h1>Update Subcategory</h1>
+        <br>
+        <form action="/admin/update_subcategory" method="POST">
+            <input value="{{ list[0]['subcategory_id'] }}" type="hidden" name="id">
+
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Category</label>
+                <div class="input-group mb-3">
+                    <select name="categoryId" class="form-select" id="inputGroupSelect01">
+                        {% for data in category_list %}
+                            {% if data['category_id'] == list[0]['subcategory_category_id'] %}
+                                <option selected value="{{ data['category_id'] }}">{{ data['category_name'] }}</option>
+                            {% else %}
+                                <option value="{{ data['category_id'] }}">{{ data['category_name'] }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Name</label>
+                <input value="{{ list[0]['subcategory_name'] }}" name="subCategoryName" type="text" class="form-control"
+                       id="exampleInputName"
+                       aria-describedby="nameHelp" required>
+            </div>
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Description</label>
+                <textarea name="subCategoryDescription" class="form-control" placeholder="Leave a description here"
+                          id="floatingTextarea2"
+                          style="height: 100px">{{ list[0]['subcategory_description'] }}</textarea>
+            </div>
+            <div class="d-grid gap-2 col-md-5">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+            {#    <input type="submit">#}
+        </form>
+    </div>
+{% endblock %}

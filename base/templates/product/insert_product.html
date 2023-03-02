@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Insert product{% endblock %}
+{% block head %}
+    <script>
+        function load_subcategory() {
+            let categoryId = document.getElementById("categoryId");
+            let subCategoryId = document.getElementById("subCategoryId");
+            let ajax = new XMLHttpRequest();
+            subCategoryId.innerHTML = ""
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState === 4) {
+                    console.log(ajax.responseText);
+                    let jsn = JSON.parse(ajax.responseText);
+
+
+                    for (let i = 0; i < jsn.length; i++) {
+                        let opt = document.createElement('option');
+                        opt.value = jsn[i]['subcategory_id'];
+                        opt.text = jsn[i]['subcategory_name'];
+                        subCategoryId.options.add(opt);
+                    }
+                }
+            };
+            ajax.open("get", "/admin/product/load_subcategory?categoryId=" + categoryId.value, true);
+            ajax.send();
+        }
+    </script>
+{% endblock %}
+{% block content %}
+    <div style="padding: 50px">
+        <h1>Add product</h1>
+
+        <br>
+        <form action="/admin/insert_subcategory" method="POST">
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Category</label>
+                <div class="input-group mb-3">
+                    <select name="categoryId" class="form-select" id="categoryId" onchange="load_subcategory()">
+                        <option selected>-- select category --</option>
+                        {% for data in list %}
+                            <option value="{{ data['category_id'] }}">{{ data['category_name'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Subcategory</label>
+                <div class="input-group mb-3">
+                    <select id="subCategoryId" name="subCategoryId" class="form-select">
+                        <option selected disabled>-- select subcategory --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Name</label>
+                <input name="subCategoryName" type="text" class="form-control" id="exampleInputName"
+                       aria-describedby="nameHelp" required>
+            </div>
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Description</label>
+                <textarea name="subCategoryDescription" class="form-control" placeholder="Leave a description here"
+                          id="floatingTextarea2"
+                          style="height: 100px"></textarea>
+            </div>
+            <div class="d-grid gap-2 col-md-5">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Update Category{% endblock %}
+{% block content %}
+    <div style="padding: 50px">
+        <h1>Update Category</h1>
+        <br>
+        <form action="/admin/update_category" method="POST">
+            <input value="{{ list[0]['category_id'] }}" type="hidden" name="id">
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Name</label>
+                <input value="{{ list[0]['category_name'] }}" name="categoryName" type="text" class="form-control"
+                       id="exampleInputName"
+                       aria-describedby="nameHelp" required>
+            </div>
+            <div class="mb-4 col-md-5">
+                <label for="exampleInputName" class="form-label">Description</label>
+                <textarea name="categoryDescription" class="form-control" placeholder="Leave a description here"
+                          id="floatingTextarea2"
+                          style="height: 100px">{{ list[0]['category_description'] }}</textarea>
+            </div>
+            <div class="d-grid gap-2 col-md-5">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+            {#    <input type="submit">#}
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Subcategory List{% endblock %}
+{% block content %}
+    <div style="padding: 50px">
+        <h1>Subcategory List</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Subcategory name</th>
+                <th scope="col">Subcategory description</th>
+                <th scope="col">Category name</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in list %}
+                <tr>
+
+                    <td>{{ row[0]['subcategory_name'] }}</td>
+                    <td>{{ row[0]['subcategory_description'] }}</td>
+                    <td>{{ row[1]['category_name'] }}</td>
+                    <td><a href="/admin/edit_subcategory/?id={{ row[0]['subcategory_id'] }}">
+                        <button type="button" class="btn btn-outline-success">Update</button>
+                    </a>
+                        <a href="/admin/delete_subcategory/?id={{ row[0]['subcategory_id'] }}">
+                            <button type="button" class="btn btn-outline-danger">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if list|length == 0 %}
+                <h6 style="text-align: center">No subcategory add please some</h6>
+        {% endif %}
+    </div>
+{% endblock %}
